@@ -72,7 +72,7 @@ al_folio:
     allow_remote_loader: false
   features:
     cv:
-      enabled: true
+      enabled: false
     distill:
       enabled: true
   compat:
@@ -97,7 +97,7 @@ al_folio:
 
 navbar_fixed: true
 footer_fixed: true
-search_enabled: true
+search_enabled: false
 socials_in_search: true
 posts_in_search: true
 bib_search: true
@@ -256,12 +256,14 @@ exclude:
   - _books/
   - _teachings/
   - _posts/
+  - _projects/
   - _pages/blog.md
   - _pages/books.md
   - _pages/dropdown.md
   - _pages/repositories.md
   - _pages/teaching.md
   - _pages/profiles.md
+  - _pages/projects.md
 keep_files:
   - CNAME
   - .nojekyll
