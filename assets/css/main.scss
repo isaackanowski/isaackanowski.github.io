@@ -1,0 +1,205 @@
+---
+---
+
+// Local override of al_folio_core's assets/css/main.scss.
+// The @use list below is copied unchanged from the gem; a Dracula dark mode
+// (https://draculatheme.com) is appended afterwards so it wins over the gem's
+// default dark palette. Light mode is left as the gem default. If you upgrade
+// al_folio_core, re-check this list against the gem's copy with
+// `bundle exec al-folio upgrade overrides diff assets/css/main.scss`.
+
+@use "sass:math";
+@use "sass:string";
+@use "variables" with (
+  $max-content-width: {{ site.max_width | default:  "930px" }}
+);
+@use "themes";
+@use "layout";
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+// -----------------------------------------------------------------------------
+// Dracula palette (dark mode only)
+// -----------------------------------------------------------------------------
+
+$dracula-bg: #282a36;
+$dracula-bg-dark: #21222c;
+$dracula-bg-darker: #191a21;
+$dracula-current-line: #44475a;
+$dracula-fg: #f8f8f2;
+$dracula-comment: #6272a4;
+$dracula-cyan: #8be9fd;
+$dracula-green: #50fa7b;
+$dracula-orange: #ffb86c;
+$dracula-pink: #ff79c6;
+$dracula-purple: #bd93f9;
+$dracula-red: #ff5555;
+$dracula-yellow: #f1fa8c;
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --global-bg-color: #{$dracula-bg};
+  --global-code-bg-color: #{$dracula-bg-dark};
+  --global-text-color: #{$dracula-fg};
+  --global-text-color-light: #{$dracula-comment};
+  --global-theme-color: #{$dracula-purple};
+  --global-hover-color: #{$dracula-pink};
+  --global-hover-text-color: #{$dracula-bg};
+  --global-footer-bg-color: #{$dracula-bg-darker};
+  --global-footer-text-color: #{$dracula-comment};
+  --global-footer-link-color: #{$dracula-purple};
+  --global-distill-app-color: #{$dracula-comment};
+  --global-divider-color: #{$dracula-current-line};
+  --global-card-bg-color: #{$dracula-bg-dark};
+  --global-highlight-color: #{$dracula-pink};
+  --global-back-to-top-bg-color: rgba(189, 147, 249, 0.6);
+  --global-back-to-top-text-color: #{$dracula-bg};
+  --global-newsletter-bg-color: #{$dracula-bg-dark};
+  --global-newsletter-text-color: #{$dracula-fg};
+
+  --global-tip-block: #{$dracula-green};
+  --global-tip-block-bg: rgba(80, 250, 123, 0.1);
+  --global-tip-block-text: #{$dracula-fg};
+  --global-tip-block-title: #{$dracula-green};
+  --global-warning-block: #{$dracula-yellow};
+  --global-warning-block-bg: rgba(241, 250, 140, 0.1);
+  --global-warning-block-text: #{$dracula-fg};
+  --global-warning-block-title: #{$dracula-yellow};
+  --global-danger-block: #{$dracula-red};
+  --global-danger-block-bg: rgba(255, 85, 85, 0.1);
+  --global-danger-block-text: #{$dracula-fg};
+  --global-danger-block-title: #{$dracula-red};
+
+  ::selection {
+    background: #{$dracula-current-line};
+    color: #{$dracula-fg};
+  }
+
+  // Dracula syntax highlighting for Rouge code blocks
+  .highlight,
+  .highlight pre {
+    background-color: #{$dracula-bg-dark};
+    color: #{$dracula-fg};
+  }
+
+  .highlight {
+    .c,
+    .ch,
+    .cm,
+    .cpf,
+    .c1,
+    .cs {
+      color: #{$dracula-comment};
+      font-style: normal;
+    }
+    .cp {
+      color: #{$dracula-pink};
+    }
+    .err {
+      color: #{$dracula-red};
+      background-color: transparent;
+    }
+    .k,
+    .kd,
+    .kn,
+    .kp,
+    .kr,
+    .kv,
+    .o,
+    .ow {
+      color: #{$dracula-pink};
+      font-weight: normal;
+    }
+    .kc,
+    .m,
+    .mb,
+    .mf,
+    .mh,
+    .mi,
+    .il,
+    .mo,
+    .mx {
+      color: #{$dracula-purple};
+    }
+    .kt,
+    .nc,
+    .nn,
+    .bp {
+      color: #{$dracula-cyan};
+      font-style: italic;
+      font-weight: normal;
+    }
+    .s,
+    .sa,
+    .sb,
+    .sc,
+    .dl,
+    .sd,
+    .s1,
+    .s2,
+    .se,
+    .sh,
+    .si,
+    .sx,
+    .sr,
+    .ss {
+      color: #{$dracula-yellow};
+    }
+    .na,
+    .nf,
+    .fm,
+    .nx {
+      color: #{$dracula-green};
+      font-weight: normal;
+    }
+    .nb,
+    .nt {
+      color: #{$dracula-pink};
+    }
+    .no,
+    .nv,
+    .vc,
+    .vg,
+    .vi,
+    .vm,
+    .ni,
+    .nl,
+    .ne,
+    .nd {
+      color: #{$dracula-orange};
+      font-weight: normal;
+    }
+    .n,
+    .p,
+    .w {
+      color: #{$dracula-fg};
+    }
+    .gd {
+      color: #{$dracula-red};
+      background-color: transparent;
+    }
+    .gi {
+      color: #{$dracula-green};
+      background-color: transparent;
+    }
+    .gh,
+    .gu {
+      color: #{$dracula-purple};
+    }
+    .ge {
+      font-style: italic;
+    }
+    .gs {
+      font-weight: bold;
+    }
+  }
+}
