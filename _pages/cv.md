@@ -1,10 +1,10 @@
 ---
 layout: page
 permalink: /cv/
-title: CV
+title: 
 nav: true
 nav_order: 5
-description: My CV.
+description: 
 ---
 
 <object data="{{ '/assets/pdf/CV.pdf' | relative_url }}" type="application/pdf" width="100%" style="height: 90vh;">
